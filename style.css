@@ -10,6 +10,13 @@
   width: 10px;
   height: 10px;
   background-color: green;
+  /* transition:  0.5s ; */
+}
+.food{
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: tomato;
 }
 .arrows{
   width: 154px;
