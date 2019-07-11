@@ -1,0 +1,59 @@
+#root{
+  width: 800px;
+  height: 400px;
+  margin: 20px auto;
+  border: 1px solid gray;
+  position: relative;
+}
+.snake{
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: green;
+}
+.arrows{
+  width: 154px;
+    height: 153px;
+  margin: 0 auto;
+  display: flex;
+  position: relative;
+}
+.up{
+  position: absolute;
+  top:0;
+  left: 0px;
+  right: 0;
+  margin: 0 auto;
+  width: 50px;
+  height: 50px;
+  border: 1px solid black
+}
+.right{
+  position: absolute;
+  top: 50px;
+  right: 0;
+  width: 50px;
+  height: 50px;
+  border: 1px solid black
+
+}
+.left{
+  position: absolute;
+  top: 50px;
+  left: 0;
+  width: 50px;
+  height: 50px;
+  border: 1px solid black
+
+}
+.down{
+  position: absolute;
+  bottom:0;
+  left: 0px;
+  right: 0;
+  margin: 0 auto;
+  width: 50px;
+  height: 50px;
+  border: 1px solid black
+
+}
