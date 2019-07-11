@@ -32,6 +32,8 @@ var createFood = function(){
 }
 
 
+
+
 document.onkeydown = function(e) {
   switch (e.keyCode) {
       case 37:
@@ -97,6 +99,13 @@ var downpress= function(){
   isleft=true;
   isright=true;
 }
-
+// var snakeEatFood=function(){
+//   var snakeleftpos = document.querySelector(".snake").style.left ;
+//   var foodleftpos= document.querySelector(".food").style.left;
+//   if (snakeleftpos == foodleftpos) {
+//      return console.log("eaten")
+//   } 
+// }
+// snakeEatFood()
 createSnake();
 createFood();
