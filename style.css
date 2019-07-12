@@ -6,11 +6,16 @@
   position: relative;
 }
 .snake{
-  position: absolute;
+  position: relative;
   width: 10px;
   height: 10px;
   background-color: green;
   /* transition:  0.5s ; */
+}
+.snake_item{
+  position: absolute;
+  background: #000;
+  border: 1px solid whitesmoke;
 }
 .food{
   position: absolute;

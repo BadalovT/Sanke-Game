@@ -1,5 +1,5 @@
-var snakeWidth=10;
-var snakeHeight=10;
+// var snakeWidth=10;
+// var snakeHeight=10;
 var snakePositionLeft=0;
 var snakePositionUp=0;
 var foodPositionLeft=Math.round(Math.random()/10*790)/10*100;
@@ -23,12 +23,12 @@ var createSnake = function(){
 }
 
 var createFood = function(){
-  var element=document.createElement("div");
-  element.classList.add("food");
-  element.style.left = foodPositionLeft+"px";
-  element.style.top = foodPositionTop+"px";
+  var food=document.createElement("div");
+  food.classList.add("food");
+  food.style.left = foodPositionLeft+"px";
+  food.style.top = foodPositionTop+"px";
 
-  document.getElementById("root").appendChild(element);
+  document.getElementById("root").appendChild(food);
 }
 
 
@@ -78,6 +78,7 @@ var leftPress= function(){
   isright=false;
   isdown==true;
   isup=true;
+  
 }
 
 var upPress= function(){
@@ -99,13 +100,16 @@ var downpress= function(){
   isleft=true;
   isright=true;
 }
-// var snakeEatFood=function(){
-//   var snakeleftpos = document.querySelector(".snake").style.left ;
-//   var foodleftpos= document.querySelector(".food").style.left;
-//   if (snakeleftpos == foodleftpos) {
-//      return console.log("eaten")
-//   } 
-// }
-// snakeEatFood()
+
+
+var snakeEatFood=function(){
+  snakePositionLeft+=10
+  if (snakePositionLeft == foodPositionLeft) {
+   console.log(snakePositionLeft)
+  } 
+}
+
 createSnake();
 createFood();
+snakeEatFood()
+
