@@ -3,14 +3,13 @@ function Snake(options) {
   this.element = this.options.element;
   this.snake = [];
   this.food = [];
-  this.direction = "right";
-  // this.gameOver=false
   this.init();
 }
 
 Snake.prototype.init = function () {
   this.initField();
   this.initSnake();
+  this.generateFood();
   this.stepFunction();
   this.listen();
 };
@@ -55,17 +54,31 @@ Snake.prototype.move = function () {
         break;
       case 'top':
         snakeItem.posY--;
-        snakeItem.element.style.left = (snakeItem.posY * this.options.cellSize) + "px";
+        snakeItem.element.style.top = (snakeItem.posY * this.options.cellSize) + "px";
         break;
       case 'bottom':
         snakeItem.posY++;
-        snakeItem.element.style.left = (snakeItem.posY * this.options.cellSize) + "px";
+        snakeItem.element.style.top = (snakeItem.posY * this.options.cellSize) + "px";
         break;
     }
   }
-  for (var i = len-2; i >=0; i--) {
+  for (var i = 0; i<len-1; i++) {
     this.snake[i].direction=this.snake[i+1].direction;
   }
+
+  var head=this.snake[this.snake.length-1];
+  for (var i = 0, len=this.food.length; i<len; i++) {
+   var food=this.food[i];
+   if (food.posX===head.posX && food.posY===head.posY) {
+     food.element.remove();
+     this.food.splice(i, 1);
+     this.grow();
+   }
+  }
+}
+
+Snake.prototype.grow=function(){
+    
 }
 
 Snake.prototype.changeDirection=function(direction){
@@ -73,11 +86,36 @@ Snake.prototype.changeDirection=function(direction){
   head.direction=direction;
 }
 
+Snake.prototype.generateFood=function(){
+  var x=Math.round(Math.random()*this.options.field.sizeX),
+      y=Math.round(Math.random()*this.options.field.sizeY);
+
+   for (var i = 0, len = this.snake.length; i < len; i++) {
+     var snakeItem=this.snake[i];
+     if (snakeItem.posX===x && snakeItem.posY===y) {
+       return this.generateFood();
+     }
+   }    
+   var food=document.createElement("div")
+   food.className = "snaake_food"
+   food.style.width =
+      food.style.height = this.options.cellSize + "px";
+    food.style.top = (y * this.options.cellSize) + "px";
+    food.style.left = (x * this.options.cellSize) + "px";
+
+    this.food.push({
+      element:food,
+      posX:x,
+      posY:y,
+    });
+    this.element.appendChild(food)
+}
+
 Snake.prototype.listen = function () {
   var _this=this;
-  window.addEventListener('keydown', function () {
+  window.addEventListener('keydown', function (e) {
     var e = window.event;
-    switch (e.keycode) {
+    switch (e.keyCode) {
       case 38:
         _this.changeDirection('top')
         break;
@@ -117,7 +155,7 @@ Snake.prototype.stepFunction = function () {
     this.move()
     return setTimeout(function () {
       _this.stepFunction();
-    }, 1000)
+    }, this.options.snake.speed)
   }
   alert("Game Over")
 }
@@ -130,9 +168,7 @@ new Snake({
     sizeY: 10,
   },
   snake: {
-    defaultDirection: "right",
-    minSize: 2,
-    // posX:0,
-    // posY:0
+    minSize: 4,
+    speed:500,
   }
 })

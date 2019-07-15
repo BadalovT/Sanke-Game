@@ -2,10 +2,20 @@
 .snake{
  position: relative;
   background-color: green;
+  overflow: hidden;
 }
 .snake_item{
   position: absolute;
   background: #000;
   border: 1px solid whitesmoke;
   box-sizing: border-box;
+  z-index: 2;
+  /* transition: all .2s linear;  */
+}
+.snaake_food{
+  position: absolute;
+  background: yellow;
+  border: 1px solid whitesmoke;
+  box-sizing: border-box;
+  z-index: 1;
 }
